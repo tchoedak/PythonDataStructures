@@ -1,12 +1,12 @@
-class Node:
-    
-    def __init__(self, val):
-        self.left = None
-        self.right = None
-        self.data = val
-
-
 class BinarySearchTree:
+    
+    class TreeNode:
+        def __init__(self, val):
+            self.left = None
+            self.right = None
+            self.data = val
+
+            
     def __init__(self):
         self.root = None
     
@@ -15,21 +15,21 @@ class BinarySearchTree:
             
     def add(self, val):
         if (self.root == None):
-            self.root = Node(val)
+            self.root = self.TreeNode(val)
         else:
             self._add(val, self.root)
-    
+
     def _add(self, val, node):
         if (val < node.data):
             if (node.left != None):
                 self._add(val, node.left)
             else:
-                node.left = Node(val)
+                node.left = self.TreeNode(val)
         else:
             if (node.right != None):
                 self._add(val, node.right)
             else:
-                node.right = Node(val)
+                node.right = self.TreeNode(val)
     
     def find(self, val):
         if (self.root != None):
