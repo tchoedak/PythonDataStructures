@@ -31,6 +31,12 @@ class MinHeap:
         self.heap = [0]
         self.size = 0
     
+    def isEmpty(self):
+        if self.size == 0:
+            return True
+        else:
+            return False
+    
     
     def insert(self, data):
         self.heap.append(data)
