@@ -11,11 +11,15 @@ class LinkedList:
         
         def __init__(self, data):
             self.data = data
+            self.id = None
             self.next = None
 
 
     def __init__(self):
         self.head = None
+        
+    def setNodeID(self, node, id):
+        node.id = id
     
     def search(self, key):
         if self.head == None:
@@ -103,16 +107,16 @@ class LinkedList:
         return cycleLen
         
         
-                
+def main():           
 
-j = LinkedList()
-j.addToEnd(1)
-j.addToEnd(2)
-j.addToEnd(4)
-j.addAfter(2,3)
-
-cycleNode = ListNode(5)
-firstNode = j.search(1)
-cycleNode.next = firstNode
-j.getLastNode().next = cycleNode
+    j = LinkedList()
+    j.addToEnd(1)
+    j.addToEnd(2)
+    j.addToEnd(4)
+    j.addAfter(2,3)
+    
+    cycleNode = ListNode(5)
+    firstNode = j.search(1)
+    cycleNode.next = firstNode
+    j.getLastNode().next = cycleNode
 

@@ -64,26 +64,26 @@ class BinarySearchTree:
             print str(node.data) + ' '
             self._printTree(node.right)
 
-
-#here's where the test runs
-test = binarySearchTree()
-test.add(200)
-test.add(100)
-test.add(300)
-
-f = test.find(test.root, 100)
-
-test.find(test.root, 200)
-test.find(test.root, 100)
-
-def checkIsTree(Tree):
-    root = Tree.getRoot()
-    return checkNode(root)
+def main():
+    #here's where the test runs
+    test = binarySearchTree()
+    test.add(200)
+    test.add(100)
+    test.add(300)
     
-# case 1:
-# node1: 100
-# node1.left: 50
-# node2.right: 150
+    f = test.find(test.root, 100)
+    
+    test.find(test.root, 200)
+    test.find(test.root, 100)
+    
+    def checkIsTree(Tree):
+        root = Tree.getRoot()
+        return checkNode(root)
+        
+    # case 1:
+    # node1: 100
+    # node1.left: 50
+    # node2.right: 150
 
 #
 
@@ -98,8 +98,6 @@ def checkNode(node):
         if (not checkNode(node.left) and not checkNode(node.right)):
             return False
     return True
-
-checkIsTree(test)
 
 
 def isBST(node):

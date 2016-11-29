@@ -25,10 +25,10 @@ min heap:
     parent is always smaller or eq than either children
 """
 
-class MinHeap:
+class MaxHeap:
     
     def __init__(self):
-        self.heap = [0]
+        self.heap = ['head']
         self.size = 0
     
     def isEmpty(self):
@@ -37,68 +37,79 @@ class MinHeap:
         else:
             return False
     
-    
     def insert(self, data):
         self.heap.append(data)
         self.size += 1
-        self.heapifyUp(self.size-1)
-    
+        print "heapifying index:"
+        self.heapifyUp(self.size)
+
     def heapifyUp(self, index):
         parent = index/2
-        if self.heap[parent] > self.heap[index]:
+        if self.heap[parent] == 'head':
+            return
+        elif self.heap[index] > self.heap[parent]:
             self.heap[parent], self.heap[index] = self.heap[index], self.heap[parent]
-            print "completed a swap! new heap:"
-            print self.heap
             self.heapifyUp(parent)
         else:
             return
-    
-    def delMin(self):
-        self.heap[1] = self.heap[self.size - 1]
+
+    def delMax(self):
+        self.heap[1] = self.heap[self.size]
         self.heap.pop()
         self.size -= 1
         self.heapifyDown(1)
-    
+
     def heapifyDown(self, index):
         child = 2*index
         child2 = 2*index + 1
         #sanity check to make sure childs can be compared to
-        if child <= self.size - 1:
-            #heap property is violated
-            if self.heap[index] > self.heap[child]:
-                #if child2 is smaller, swap with it instead
-                if self.heap[child2] < self.heap[child]:
-                    self.heap[index], self.heap[child2] = self.heap[child2], self.heap[index]
-                    print self.heap
-                    self.heapifyDown(child2)
-                #else heap property hot violated by swapping so go ahead
+        if child <= self.size:
+            if child2 <= self.size:
+                if self.heap[child] > self.heap[child2]:
+                    max_child = child
                 else:
-                    self.heap[index], self.heap[child] = self.heap[child], self.heap[index]
-                    print self.heap
-                    self.heapifyDown(child)
-            elif self.heap[index] > self.heap[child2]:
-                self.heap[index], self.heap[child2] = self.heap[child2], self.heap[index]
-                print self.heap
-                self.heapifyDown(child2)
+                    max_child = child2
+                
+                if self.heap[index] < self.heap[max_child]:
+                    self.heap[index], self.heap[max_child] = self.heap[max_child], self.heap[index]
+                    self.heapifyDown(max_child)
             else:
-                return
+                if self.heap[index] < self.heap[child]:
+                    self.heap[index], self.heap[child] = self.heap[child], self.heap[index]
+                    self.heapifyDown(child)
+
 
     def buildHeap(self, alist):
         self.heap = [0] + alist[:]
-        self.size = len(self.heap)
-        index = (self.size - 1)/ 2
+        self.size = len(self.heap) - 1
+        index = self.size/ 2
         while index > 0:
             self.heapifyDown(index)
             print index
             index -= 1
 
 def main():
-    j = MinHeap()
-    j.heap = [0, 5, 9, 11, 14, 18, 19, 21, 33, 17, 27]
-    j.size = len(j.heap)
-    j.delMin()
+    k = MaxHeap()
+    k.insert(10)
+    k.insert(7)
+    k.insert(4)
+    k.insert(8)
+    k.heap
     
-    h = MinHeap()
-    h.buildHeap([9, 6, 5, 2, 3])
-    print h.heap
-    print h.heap == [0, 2, 3, 5, 6, 9]
+    k.delMax()
+    k.heap
+    
+    j = MaxHeap()
+    j.insert(15)
+    j.insert(4)
+    j.insert(9)
+    j.insert(11)
+    j.insert(3)
+    j.insert(5)
+    j.insert(7)
+    j.insert(14)
+    j.heap
+    j.delMax()
+    j.heap
+
+

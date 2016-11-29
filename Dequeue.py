@@ -17,7 +17,7 @@ dequeue: a double-ended queue
     one of two ends - head or tail
 """
 
-import tchoedak.pythondatastructures.DoublyLinkedList
+from pds.DoublyLinkedList import DoublyLinkedList
 
 class Dequeue(DoublyLinkedList):
     
@@ -25,8 +25,9 @@ class Dequeue(DoublyLinkedList):
         self.head = None
     
     
-    def enqueue(self, item):
+    def enqueue(self, item, id):
         node = self.ListNode(item)
+        self.setNodeID(node, id)
         if self.head == None:
             self.head = node
         else:
@@ -36,9 +37,16 @@ class Dequeue(DoublyLinkedList):
             self.head = node
     
     def dequeue(self):
-        lastNode = self.getLastNode()
+        lastNode = self.poll()
         prevNode = lastNode.prev
-        prevNode.next = None
+        if prevNode:
+            prevNode.next = None
+        else:
+            self.head = None
+        return lastNode
+    
+    def poll(self):
+        return self.getLastNode()
         
     def eject(self):
         secondNode = self.head.next
@@ -56,14 +64,24 @@ class Dequeue(DoublyLinkedList):
             node = node.next
         return max_node
     
-d = Dequeue()
-d.enqueue(7)
-d.enqueue(6)
-d.enqueue(2)
-d.enqueue(5)
-d.dequeue()
-d.enqueue(10)
-d.eject()
-m = d.max()
-print m.data
-print "should equal 6"
+    def iterator(self):
+        node = self.head
+        while node != None:
+            yield node
+            node = node.next
+    
+    def asList(self):
+        return [node.data for node in self.iterator()]
+
+def main():
+    d = Dequeue()
+    d.enqueue(7)
+    d.enqueue(6)
+    d.enqueue(2)
+    d.enqueue(5)
+    d.dequeue()
+    d.enqueue(10)
+    d.eject()
+    m = d.max()
+    print m.data
+    print "should equal 6"

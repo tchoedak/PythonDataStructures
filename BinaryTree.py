@@ -24,7 +24,7 @@ class BinaryTree:
 
 
     def __init__(self):
-        
+        self.total = 0
         self.head = None
     
     def getLeftChild(self):
@@ -121,23 +121,58 @@ class BinaryTree:
         else:
             return False
         
+    def invertTree(self):
+        if self.head == None:
+            return self.head
+        else:
+            self._invertTree(self.head)
+    
+    def _invertTree(self, node):
+        node.left, node.right = node.right, node.left
+        if node.left != None:
+            self._invertTree(node.left)
+        if node.right != None:
+            self._invertTree(node.right)
+    
+    def sumNumbers(self):
+        if self.head != None:
+            self._sumNumbers(self.head)
+        return self.total
+    
+    def _sumNumbers(self, node):
+        if node.left:
+            self.total += int(str(node.data) + str(node.left.data))
+            self._sumNumbers(node.left)
+        if node.right:
+            self.total += int(str(node.data) + str(node.right.data))
+            self._sumNumbers(node.right)
         
-
-t = BinaryTree()
-t.setRootNode(t.createNode("A", 314))
-r = t.head
-r.setLeft(t.createNode("B", 6))
-r.left.setLeft(t.createNode("C", 271))
-r.left.left.setLeft(t.createNode("D", 28))
-r.left.left.setRight(t.createNode("E", 0))
-r.left.setRight(t.createNode("F", 561))
-print a.isHeightBalanced()
-
-a = BinaryTree()
-a.setRootNode(a.createNode("A", 1))
-b = a.head
-b.setLeft(a.createNode("B",6))
-b.setRight(a.createNode("C", 8))
-b.left.setLeft(a.createNode("D", 3))
-b.left.setRight(a.createNode("E", 5))
-print b.isHeightBalanced()
+        
+def main():
+    
+    t = BinaryTree()
+    t.setRootNode(t.createNode("A", 314))
+    r = t.head
+    r.setLeft(t.createNode("B", 6))
+    r.left.setLeft(t.createNode("C", 271))
+    r.left.left.setLeft(t.createNode("D", 28))
+    r.left.left.setRight(t.createNode("E", 0))
+    r.left.setRight(t.createNode("F", 561))
+    print t.isHeightBalanced()
+    
+    a = BinaryTree()
+    a.setRootNode(a.createNode("A", 1))
+    b = a.head
+    b.setLeft(a.createNode("B",6))
+    b.setRight(a.createNode("C", 8))
+    b.left.setLeft(a.createNode("D", 3))
+    b.left.setRight(a.createNode("E", 5))
+    print b.isHeightBalanced()
+    
+    t = BinaryTree()
+    t.setRootNode(t.createNode("A", 1))
+    r = t.head
+    r.setLeft(t.createNode("B", 2))
+    r.setRight(t.createNode("C", 3))
+    r.left.setLeft(t.createNode("D", 4))
+    r.left.setRight(t.createNode("E", 5))

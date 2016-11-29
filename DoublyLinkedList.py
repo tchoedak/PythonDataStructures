@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import tchoedak.pythondatastructures.LinkedList
+from pds.LinkedList import LinkedList
 
 class DoublyLinkedList(LinkedList):
     
@@ -10,6 +10,7 @@ class DoublyLinkedList(LinkedList):
             self.data = data
             self.next = None
             self.prev = None
+            self.id = None
 
 
     def __init__(self):

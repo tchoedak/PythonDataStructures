@@ -63,17 +63,17 @@ class Stack:
     def max(self):
         return self.max
 
-        
-j = Stack()
-j.push(1)
-j.push(2)
-j.push(3)
-print j.max
-j.push(4)
-print j.max
-j.push(4)
-print j.max
-j.pop()
-print j.max
-j.pop()
-print j.max
+def main():
+    j = Stack()
+    j.push(1)
+    j.push(2)
+    j.push(3)
+    print j.max
+    j.push(4)
+    print j.max
+    j.push(4)
+    print j.max
+    j.pop()
+    print j.max
+    j.pop()
+    print j.max
