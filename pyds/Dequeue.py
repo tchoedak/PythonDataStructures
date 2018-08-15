@@ -17,7 +17,7 @@ dequeue: a double-ended queue
     one of two ends - head or tail
 """
 
-from pds.DoublyLinkedList import DoublyLinkedList
+from DoublyLinkedList import DoublyLinkedList
 
 class Dequeue(DoublyLinkedList):
     

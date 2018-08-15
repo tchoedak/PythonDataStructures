@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from pds.LinkedList import LinkedList
+from LinkedList import LinkedList
 
 class DoublyLinkedList(LinkedList):
     
